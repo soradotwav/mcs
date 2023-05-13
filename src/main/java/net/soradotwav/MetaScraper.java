@@ -118,4 +118,20 @@ public class MetaScraper {
 
         return completeList;
     }
+
+    public static String[] cacheItem (String url) throws IOException {
+        String[] gameDetails = new String[5];
+        Document doc = Jsoup.connect(url)
+                    .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+                    .referrer("http://www.metacritic.com")
+                    .get();
+
+        gameDetails[0] = doc.selectFirst("div.product_title > a").text();
+        gameDetails[1] = doc.selectFirst("div.product_title > span").text();
+        gameDetails[2] = doc.selectFirst("a.metascore_anchor").text();
+        gameDetails[3] = doc.selectFirst("li.summary_detail.release_data > span.data").text();
+        gameDetails[4] = url;
+
+        return gameDetails;
+    }
 }
