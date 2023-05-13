@@ -10,6 +10,14 @@ import org.jsoup.select.Elements;
 
 public class MetaScraper {
 
+    /**
+     * Returns an array of ArrayLists that contains metadata for a list of games.
+     * The metadata includes game titles, platforms, scores, release dates, and links.
+     * 
+     * @param listUrl the URL of the Metacritic page that contains the list of games
+     * @return an array of ArrayLists that contains metadata for each game in the list
+     * @throws IOException if an I/O error occurs while connecting to the website
+     */
     public static ArrayList<String>[] cacheList(String listUrl) throws IOException {
 
         // Initializing connection to website
@@ -37,6 +45,7 @@ public class MetaScraper {
         }
 
         // Platforms //
+
         ArrayList<String> platformsList = new ArrayList<String>();
         Elements platforms = doc.select("div.clamp-details > div.platform > span.data");
 
@@ -55,6 +64,7 @@ public class MetaScraper {
         }
 
         // Scores //
+
         ArrayList<String> scoresList = new ArrayList<String>();
         Elements scores = doc.select("div.clamp-score-wrap > a.metascore_anchor");
 
@@ -72,6 +82,7 @@ public class MetaScraper {
         }
 
         // Release Dates //
+
         ArrayList<String> datesList = new ArrayList<String>();
         Elements dates = doc.select("div.clamp-details > span");
 
@@ -89,6 +100,7 @@ public class MetaScraper {
         }
 
         // Links //
+
         ArrayList<String> linksList = new ArrayList<String>();
         Elements links = doc.select("a.title");
         int indx = 0;
@@ -110,6 +122,8 @@ public class MetaScraper {
             }
         }
 
+        // Write everything to output array
+
         completeList[0] = namesList;
         completeList[1] = platformsList;
         completeList[2] = scoresList;
@@ -119,6 +133,14 @@ public class MetaScraper {
         return completeList;
     }
 
+    /**
+     * Returns an array of strings that contains metadata for a single game.
+     * The metadata includes the game title, platform, score, release date, and link.
+     * 
+     * @param url the URL of the Metacritic page that contains the game's metadata
+     * @return an array of strings that contains metadata for the game
+     * @throws IOException if an I/O error occurs while connecting to the website
+     */
     public static String[] cacheItem (String url) throws IOException {
         String[] gameDetails = new String[5];
         Document doc = Jsoup.connect(url)
