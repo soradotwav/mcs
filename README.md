@@ -2,7 +2,7 @@
 
 Metacritic Scraper is a Java-based project that allows users to scrape metadata from Metacritic pages and retrieve information about games such as their titles, platforms, release dates, critic scores, and links. 
 
-As this is still a work in progress things are subject to drastic change.
+As this is still a work in progress things are subject to drastic change. Currently only game list links and game webpages are able to properly be scraped.
 
 ## Prerequisites
 

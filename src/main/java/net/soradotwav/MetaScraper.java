@@ -21,6 +21,7 @@ public class MetaScraper {
     public static ArrayList<String>[] cacheList(String listUrl) throws IOException {
 
         // Initializing connection to website
+        UrlChecker.check(listUrl);
         ArrayList<String>[] completeList = new ArrayList[5];
         Document doc = Jsoup.connect(listUrl)
                     .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
@@ -141,19 +142,41 @@ public class MetaScraper {
      * @return an array of strings that contains metadata for the game
      * @throws IOException if an I/O error occurs while connecting to the website
      */
-    public static String[] cacheItem (String url) throws IOException {
+    public static String[] cacheItem(String url) throws IOException {
+        UrlChecker.check(url);
         String[] gameDetails = new String[5];
         Document doc = Jsoup.connect(url)
                     .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
                     .referrer("http://www.metacritic.com")
                     .get();
 
-        gameDetails[0] = doc.selectFirst("div.product_title > a").text();
-        gameDetails[1] = doc.selectFirst("div.product_title > span").text();
-        gameDetails[2] = doc.selectFirst("a.metascore_anchor").text();
-        gameDetails[3] = doc.selectFirst("li.summary_detail.release_data > span.data").text();
+        try {
+            gameDetails[0] = doc.selectFirst("div.product_title > a").text();
+        } catch (NullPointerException e) {
+            gameDetails[0] = "N/A";
+        }
+
+        try {
+            gameDetails[1] = doc.selectFirst("div.product_title > span").text();
+        } catch (NullPointerException e) {
+            gameDetails[1] = "N/A";
+        }
+
+        try {
+            gameDetails[2] = doc.selectFirst("a.metascore_anchor").text();
+        } catch (NullPointerException e) {
+            gameDetails[2] = "N/A";
+        }
+
+        try {
+            gameDetails[3] = doc.selectFirst("li.summary_detail.release_data > span.data").text();
+        } catch (NullPointerException e) {
+            gameDetails[3] = "N/A";
+        }
+
         gameDetails[4] = url;
 
         return gameDetails;
     }
+
 }
