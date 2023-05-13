@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class MetaScraper {
+public class mcsScraper {
 
     /**
      * Returns an array of ArrayLists that contains metadata for a list of games.
@@ -21,7 +21,7 @@ public class MetaScraper {
     public static ArrayList<String>[] cacheList(String listUrl) throws IOException {
 
         // Initializing connection to website
-        UrlChecker.check(listUrl);
+        urlChecker.check(listUrl);
         ArrayList<String>[] completeList = new ArrayList[5];
         Document doc = Jsoup.connect(listUrl)
                     .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
@@ -143,7 +143,7 @@ public class MetaScraper {
      * @throws IOException if an I/O error occurs while connecting to the website
      */
     public static String[] cacheItem(String url) throws IOException {
-        UrlChecker.check(url);
+        urlChecker.check(url);
         String[] gameDetails = new String[5];
         Document doc = Jsoup.connect(url)
                     .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")

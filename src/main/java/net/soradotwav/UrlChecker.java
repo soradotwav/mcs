@@ -1,6 +1,6 @@
 package net.soradotwav;
 
-public class UrlChecker {
+public class urlChecker {
 
     /**
     * This method checks if a given URL is valid for Metacritic games website.

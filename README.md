@@ -1,17 +1,21 @@
-# Metacritic Scraper
+# mcs (Java)
 
-Metacritic Scraper is a Java-based project that allows users to scrape metadata from Metacritic pages and retrieve information about games such as their titles, platforms, release dates, critic scores, and links. 
+mcs is a Java-based project that allows users to scrape metadata from Metacritic pages and retrieve information about games such as their titles, platforms, release dates, critic scores, and links. 
 
 As this is still a work in progress things are subject to drastic change. Currently only game list links and game webpages are able to properly be scraped.
 
 ## Prerequisites
 
-In order to use Metacritic Scraper, you will need to have Java version 1.8 or higher installed on your computer.
+In order to use mcs, you will need to have Java version 1.8 or higher installed on your computer.
+
+mcs depends on the following libraries, which are included in both the pom.xml of the project and the jar file:
+
+* [Jsoup](https://jsoup.org/)
 
 ## Getting Started
 
-1. Clone this repository to your local machine.
-2. Import the project into your preferred Java development environment.
+1. Clone this repository to your local machine or download the jar file under `Releases`.
+2. Import the project or jar into your preferred Java development environment.
 3. Create a new instance of the `mcsList` or `mcsItem` class to scrape metadata from a Metacritic page or a specific game URL.
 4. Use the methods provided by the `mcsList` or `mcsItem` class to retrieve the desired metadata.
 

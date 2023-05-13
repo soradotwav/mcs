@@ -31,7 +31,7 @@ public class mcsList {
      * @throws IOException if an I/O error occurs while connecting to the website
      */
     public void initializeList(String listUrl) throws IOException {
-        ArrayList<String>[] tempCache = MetaScraper.cacheList(listUrl);
+        ArrayList<String>[] tempCache = mcsScraper.cacheList(listUrl);
         this.gameTitles = tempCache[0];
         this.gamePlatforms = tempCache[1];
         this.gameScores = tempCache[2];

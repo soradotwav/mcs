@@ -28,7 +28,7 @@ public class mcsItem {
      * @throws IOException if an I/O error occurs while connecting to the website
      */
     public void initializeItem(String url) throws IOException {
-        String[] tempCache = MetaScraper.cacheItem(url);
+        String[] tempCache = mcsScraper.cacheItem(url);
 
         this.gameTitle = tempCache[0];
         this.gamePlatform= tempCache[1];
