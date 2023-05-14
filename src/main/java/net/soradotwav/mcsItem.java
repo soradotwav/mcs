@@ -2,7 +2,7 @@ package net.soradotwav;
 
 import java.io.IOException;
 
-public class mcsItem {
+public class McsItem {
 
     private String gameTitle;
     private String gamePlatform;
@@ -13,7 +13,7 @@ public class mcsItem {
     /**
      * Constructs a new mcItem object with empty Strings for each metadata field.
      */
-    public mcsItem() {
+    public McsItem() {
 
         this.gameTitle = "";
         this.gamePlatform = "";
@@ -28,7 +28,7 @@ public class mcsItem {
      * @throws IOException if an I/O error occurs while connecting to the website
      */
     public void initializeItem(String url) throws IOException {
-        String[] tempCache = mcsScraper.cacheItem(url);
+        String[] tempCache = McsScraper.cacheItem(url);
 
         this.gameTitle = tempCache[0];
         this.gamePlatform= tempCache[1];
@@ -43,7 +43,7 @@ public class mcsItem {
      * @return String of the game title 
      */
     public String getTitle() {
-        return this.gameTitle;
+        return gameTitle;
     }
 
     /**
@@ -52,7 +52,7 @@ public class mcsItem {
      * @return String of the game platform 
      */
     public String getPlatform() {
-        return this.gamePlatform;
+        return gamePlatform;
     }
 
     /**
@@ -61,7 +61,7 @@ public class mcsItem {
      * @return String of the game score 
      */
     public String getScore() {
-        return this.gameScore;
+        return gameScore;
     }
 
     /**
@@ -70,7 +70,7 @@ public class mcsItem {
      * @return String of the game release date 
      */
     public String getReleaseDate() {
-        return this.gameDate;
+        return gameDate;
     }
 
     /**
@@ -79,7 +79,7 @@ public class mcsItem {
      * @return String of the game link 
      */
     public String getLink() {
-        return this.gameLink;
+        return gameLink;
     }
 
     /**

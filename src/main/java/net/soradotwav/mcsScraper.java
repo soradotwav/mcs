@@ -3,12 +3,13 @@ package net.soradotwav;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class mcsScraper {
+public class McsScraper {
+
+    private static Document doc = null;
 
     /**
      * Returns an array of ArrayLists that contains metadata for a list of games.
@@ -21,12 +22,9 @@ public class mcsScraper {
     public static ArrayList<String>[] cacheList(String listUrl) throws IOException {
 
         // Initializing connection to website
-        urlChecker.check(listUrl);
+        UrlChecker.checkMain(listUrl);
         ArrayList<String>[] completeList = new ArrayList[5];
-        Document doc = Jsoup.connect(listUrl)
-                    .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
-                    .referrer("http://www.metacritic.com")
-                    .get();
+        doc = UrlChecker.checkConnect(listUrl);
 
         // Titles //
         ArrayList<String> namesList = new ArrayList<String>();
@@ -134,6 +132,8 @@ public class mcsScraper {
         return completeList;
     }
 
+    private static String[] gameDetails = new String[5];
+
     /**
      * Returns an array of strings that contains metadata for a single game.
      * The metadata includes the game title, platform, score, release date, and link.
@@ -143,40 +143,25 @@ public class mcsScraper {
      * @throws IOException if an I/O error occurs while connecting to the website
      */
     public static String[] cacheItem(String url) throws IOException {
-        urlChecker.check(url);
-        String[] gameDetails = new String[5];
-        Document doc = Jsoup.connect(url)
-                    .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
-                    .referrer("http://www.metacritic.com")
-                    .get();
+        UrlChecker.checkMain(url);
+        doc = UrlChecker.checkConnect(url);
 
-        try {
-            gameDetails[0] = doc.selectFirst("div.product_title > a").text();
-        } catch (NullPointerException e) {
-            gameDetails[0] = "N/A";
-        }
-
-        try {
-            gameDetails[1] = doc.selectFirst("div.product_title > span").text();
-        } catch (NullPointerException e) {
-            gameDetails[1] = "N/A";
-        }
-
-        try {
-            gameDetails[2] = doc.selectFirst("a.metascore_anchor").text();
-        } catch (NullPointerException e) {
-            gameDetails[2] = "N/A";
-        }
-
-        try {
-            gameDetails[3] = doc.selectFirst("li.summary_detail.release_data > span.data").text();
-        } catch (NullPointerException e) {
-            gameDetails[3] = "N/A";
-        }
+        getVal("div.product_title > a", 0);
+        getVal("div.product_title > span", 1);
+        getVal("a.metascore_anchor", 2);
+        getVal("li.summary_detail.release_data > span.data", 3);
 
         gameDetails[4] = url;
 
         return gameDetails;
     }
 
+    public static void getVal(String cssQuery, int index) {
+
+        try {
+            gameDetails[index] = doc.selectFirst(cssQuery).text();
+        } catch (NullPointerException e) {
+            gameDetails[index] = "N/A";
+        }
+    }
 }

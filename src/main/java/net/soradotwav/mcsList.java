@@ -3,7 +3,7 @@ package net.soradotwav;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class mcsList {
+public class McsList {
 
     private ArrayList<String> gameTitles;
     private ArrayList<String> gamePlatforms;
@@ -14,7 +14,7 @@ public class mcsList {
     /**
      * Constructs a new mcsList object with empty ArrayLists for each metadata field.
      */
-    public mcsList() {
+    public McsList() {
 
         this.gameTitles = new ArrayList<String>();
         this.gamePlatforms = new ArrayList<String>();
@@ -31,7 +31,7 @@ public class mcsList {
      * @throws IOException if an I/O error occurs while connecting to the website
      */
     public void initializeList(String listUrl) throws IOException {
-        ArrayList<String>[] tempCache = mcsScraper.cacheList(listUrl);
+        ArrayList<String>[] tempCache = McsScraper.cacheList(listUrl);
         this.gameTitles = tempCache[0];
         this.gamePlatforms = tempCache[1];
         this.gameScores = tempCache[2];
@@ -47,7 +47,7 @@ public class mcsList {
      * @return an ArrayList of game titles
      */
     public ArrayList<String> getTitles() {
-        return this.gameTitles;
+        return gameTitles;
     }
 
     /**
@@ -57,7 +57,7 @@ public class mcsList {
      * @return String title of specific game
      */
     public String getTitles(int index) {
-        return this.gameTitles.get(index);
+        return gameTitles.get(index);
     }
 
     // Platforms //
@@ -68,7 +68,7 @@ public class mcsList {
      * @return an ArrayList of game platforms
      */
     public ArrayList<String> getPlatforms() {
-        return this.gamePlatforms;
+        return gamePlatforms;
     }
 
     /**
@@ -78,7 +78,7 @@ public class mcsList {
      * @return String platform of specific game
      */
     public String getPlatforms(int index) {
-        return this.gamePlatforms.get(index);
+        return gamePlatforms.get(index);
     }
 
     // Critic Scores //
@@ -89,7 +89,7 @@ public class mcsList {
      * @return an ArrayList of game critic scores
      */
     public ArrayList<String> getScores() {
-        return this.gameScores;
+        return gameScores;
     }
 
     /**
@@ -99,7 +99,7 @@ public class mcsList {
      * @return String title of specific game
      */
     public String getScores(int index) {
-        return this.gameScores.get(index);
+        return gameScores.get(index);
     }
 
     // Release Dates //
@@ -110,7 +110,7 @@ public class mcsList {
      * @return an ArrayList of game release dates
      */
     public ArrayList<String> getReleaseDates() {
-        return this.gameDates;
+        return gameDates;
     }
 
     /**
@@ -120,7 +120,7 @@ public class mcsList {
      * @return String release date of specific game
      */
     public String getReleaseDates(int index) {
-        return this.gameDates.get(index);
+        return gameDates.get(index);
     }
 
     // Links //
@@ -131,7 +131,7 @@ public class mcsList {
      * @return an ArrayList of game links
      */
     public ArrayList<String> getLinks() {
-        return this.gameLinks;
+        return gameLinks;
     }
 
     /**
@@ -141,7 +141,7 @@ public class mcsList {
      * @return String link of specific game
      */
     public String getLinks(int indx) {
-        return this.gameLinks.get(indx);
+        return gameLinks.get(indx);
     }
 
     /**
